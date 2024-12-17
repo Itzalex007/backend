@@ -7,9 +7,14 @@ import { dbConnection } from "./database/dbConnection.js";
 const app = express();
 // app.use(cookieParser());
 
-app.use(cors({
-  origin: 'https://minhaj-food.netlify.app'
-}));
+const corsOptions = {
+  origin: "https://minhaj-food.netlify.app", 
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true, 
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
